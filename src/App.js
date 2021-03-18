@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import NavBar from './components/navbar';
+// import Counters from './counters';
+// import Counters from './counters';
+import Movies from './Movies';
+// import GenreList from './components/genresList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super()
+    this.state = {
+      currentGenre: 'All', 
+    };
+    // this.changeGenre = this.changeGenre.bind(this);
+  }
+
+  // changeGenre(genre) {
+  //   this.setState({currentGenre: genre});
+  // }
+
+  render() { 
+
+    return (
+      <React.Fragment>
+        <NavBar></NavBar>
+        <main className="container">          
+          { /*<GenreList changeGenre={this.changeGenre} /> */}
+          <Movies currentGenre={this.state.currentGenre}/>
+        </main>
+      </React.Fragment>
+    );
+  }
 }
-
+ 
 export default App;
