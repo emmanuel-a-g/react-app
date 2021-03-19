@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import NavBar from './components/navbar';
-// import Counters from './counters';
-// import Counters from './counters';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Movies from './Movies';
-// import GenreList from './components/genresList';
+import NavBar from './components/navbar';
+import Rentals from './components/rentals';
+import Customers from './components/customers';
+import NotFound from './components/not-found';
+import MovieForm from './components/movieForm';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -12,21 +14,26 @@ class App extends Component {
     this.state = {
       currentGenre: 'All', 
     };
-    // this.changeGenre = this.changeGenre.bind(this);
   }
 
-  // changeGenre(genre) {
-  //   this.setState({currentGenre: genre});
-  // }
-
-  render() { 
+  render() {
 
     return (
       <React.Fragment>
         <NavBar></NavBar>
-        <main className="container">          
-          { /*<GenreList changeGenre={this.changeGenre} /> */}
-          <Movies currentGenre={this.state.currentGenre}/>
+        <main className="container">
+          <Switch>
+            <Route path="/movies/:id" component={MovieForm}/>
+            <Route path="/movies" component={(props) =>  
+              <Movies currentGenre={this.state.currentGenre} {...props}/>}
+            />
+            <Route path="/customers" component={Customers}/>
+            <Route path="/rentals" component={Rentals}/>  
+            
+            <Route path="/not-found" component={NotFound}/>
+            <Redirect from="/" exact to="/movies"/>
+            <Redirect to="/not-found"/>
+          </Switch>
         </main>
       </React.Fragment>
     );

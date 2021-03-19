@@ -63,7 +63,7 @@ class Movies extends Component {
   }
 
   handleSort = sortColumn => {
-    // console.log('Chaned to path:', path);
+      // console.log('Chaned to path:', path);
     //first ascending sort
     this.setState({sortColumn});
   }
@@ -80,6 +80,7 @@ class Movies extends Component {
   }
 
   render() {
+    console.log('Are the props actually passing down?', this.props);
     let itemsCount = this.state.movies.length;
     const { currentPage, pageSize, sortColumn} = this.state;
 

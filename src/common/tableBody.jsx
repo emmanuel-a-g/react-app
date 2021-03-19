@@ -7,6 +7,7 @@ class TableBody extends Component {
     if (column.content) {
       return column.content(item);
     } else {
+      //if it matches to title then lets expose a link instead!!
       return _.get(item, column.path);
     }
   }
